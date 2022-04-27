@@ -1,5 +1,8 @@
 package model;
 
+import lombok.Builder;
+
+@Builder
 public class Courier {
     private String login;
     private String password;
@@ -18,6 +21,9 @@ public class Courier {
         this.login = login;
         this.password = password;
     }
+
+
+
 
     public String getLogin() {
         return login;
