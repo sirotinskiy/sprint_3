@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static client.CreateCourier.*;
+import static client.Steps.*;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.CourierUtils.getRandomString;
 

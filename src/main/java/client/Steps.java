@@ -7,7 +7,7 @@ import model.Courier;
 
 import static io.restassured.RestAssured.given;
 
-public class CreateCourier {
+public class Steps {
 
     private static final String createCourierURI =  "/api/v1/courier";
     private static final String signInCourierURI = "/api/v1/courier/login";
@@ -29,10 +29,10 @@ public class CreateCourier {
 
 
     @Step
-    public static Response signInCourier(Courier userCourier){
+    public static Response signInCourier(Courier signInCourier){
         Gson gson = new Gson();
-        Courier userCourier1 = new Courier(userCourier.getLogin(), userCourier.getPassword());
-        String json = gson.toJson(userCourier1);
+
+        String json = gson.toJson(signInCourier);
 
         return given()
                 .header("Content-type", "application/json")

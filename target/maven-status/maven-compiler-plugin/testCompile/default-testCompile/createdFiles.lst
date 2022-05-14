@@ -1,2 +1,4 @@
+signInCourier/SignInCourierWithNotValidDataTest.class
 createCourier/CreateCourierTest.class
+signInCourier/SignInCourierTest.class
 createCourier/CreateCourierWithNotValidDataTest.class

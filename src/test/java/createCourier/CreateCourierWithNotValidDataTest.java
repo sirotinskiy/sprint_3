@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static client.CreateCourier.*;
+import static client.Steps.*;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.CourierUtils.getRandomString;
 
@@ -32,14 +32,14 @@ public class CreateCourierWithNotValidDataTest {
         this.descriptionData = descriptionData;
     }
 
-    @Parameterized.Parameters(name = "Тестовые данные: {0} {1} {2} {3}")
-    public static Object[][] getNitValidCourier() {
+    @Parameterized.Parameters(name = "test data: {0} {3}")
+    public static Object[][] getNotValidCourier() {
         return new Object[][]{
-                {400, "Недостаточно данных для создания учетной записи", Courier.builder().password(getRandomString(7)).firstName(getRandomString(7)).build(), "Отсутствует логин"},
-                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login(getRandomString(7)).firstName(getRandomString(7)).build(), "Отсутствует пароль"},
-                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login(getRandomString(7)).password(getRandomString(7)).build(), "Отсутствует имя"},
-                {400, "Недостаточно данных для создания учетной записи", Courier.builder().firstName(getRandomString(7)).build(), "Отсутствует лог/пасс"},
-                {400, "Недостаточно данных для создания учетной записи", Courier.builder().build(), "Отсутствует лог/пасс и имя"}
+                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login("").password(getRandomString(7)).firstName(getRandomString(7)).build(), "Отсутствует логин"},
+                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login(getRandomString(7)).password("").firstName(getRandomString(7)).build(), "Отсутствует пароль"},
+                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login(getRandomString(7)).password(getRandomString(7)).firstName("").build(), "Отсутствует имя"},
+                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login("").password("").firstName(getRandomString(7)).build(), "Отсутствует лог/пасс"},
+                {400, "Недостаточно данных для создания учетной записи", Courier.builder().login("").password("").firstName("").build(), "Отсутствует лог/пасс и имя"}
         };
     }
 
@@ -49,11 +49,11 @@ public class CreateCourierWithNotValidDataTest {
         RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/";
     }
 
-    @After
-    public void tearDown(){
-        id = signInCourier(courier).then().extract().path("id");
-        deleteCourier(id);
-    }
+//    @After
+//    public void tearDown(){
+//        id = signInCourier(courier).then().extract().path("id");
+//        deleteCourier(id);
+//    }
 
     @Test
     @DisplayName("Создание курьера с неполным набором данных")
