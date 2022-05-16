@@ -12,15 +12,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static client.Steps.*;
+import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
-import static utils.CourierUtils.getRandomString;
+import static utils.Utils.getRandomString;
 
 @RunWith(Parameterized.class)
 public class SignInCourierWithNotValidDataTest {
 
     private  final int expectStatusCode;
-    private static Courier courier = Courier.builder()
-            .login(getRandomString(7))
+    private static Courier courier  = Courier.builder().
+            login(getRandomString(7))
             .password(getRandomString(7))
             .firstName(getRandomString(7))
             .build();
@@ -42,10 +43,10 @@ public class SignInCourierWithNotValidDataTest {
     @Parameterized.Parameters(name = "test data: {0} {3}")
     public static Object[][] getNotValidData(){
         return new Object[][]{
-                {400, "Недостаточно данных для входа", Courier.builder().login(courier.getLogin()).password("").build(), "Отсутствует пароль"},
-                {400, "Недостаточно данных для входа", Courier.builder().login("").password(courier.getPassword()).build(), "Отсутствует логин"},
-                {400, "Недостаточно данных для входа", Courier.builder().login("").password("").build(), "Отсутствует лог/пасс"},
-                {404, "Учетная запись не найдена", Courier.builder().login(getRandomString(7)).password(getRandomString(7)).build(), "Несуществующий аккаунт"}
+                {SC_BAD_REQUEST, "Недостаточно данных для входа", Courier.builder().login(courier.getLogin()).password("").build(), "Отсутствует пароль"},
+                {SC_BAD_REQUEST, "Недостаточно данных для входа", Courier.builder().login("").password(courier.getPassword()).build(), "Отсутствует логин"},
+                {SC_BAD_REQUEST, "Недостаточно данных для входа", Courier.builder().login("").password("").build(), "Отсутствует лог/пасс"},
+                {SC_NOT_FOUND, "Учетная запись не найдена", Courier.builder().login(getRandomString(7)).password(getRandomString(7)).build(), "Несуществующий аккаунт"}
         };
     }
 

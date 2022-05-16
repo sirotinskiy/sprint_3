@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="signInCourier.SignInCourierWithNotValidDataTest" time="2.448" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="receivingOrders.ReceivingOrdersTest" time="10.542" tests="2" errors="0" skipped="0" failures="1">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -63,8 +63,19 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="unSuccessSignIn[test data: 400 Отсутствует пароль]" classname="signInCourier.SignInCourierWithNotValidDataTest" time="0.92"/>
-  <testcase name="unSuccessSignIn[test data: 400 Отсутствует логин]" classname="signInCourier.SignInCourierWithNotValidDataTest" time="0.494"/>
-  <testcase name="unSuccessSignIn[test data: 400 Отсутствует лог/пасс]" classname="signInCourier.SignInCourierWithNotValidDataTest" time="0.504"/>
-  <testcase name="unSuccessSignIn[test data: 404 Несуществующий аккаунт]" classname="signInCourier.SignInCourierWithNotValidDataTest" time="0.521"/>
+  <testcase name="ordersListWithCourierId" classname="receivingOrders.ReceivingOrdersTest" time="8.378">
+    <failure message="1 expectation failed.&#10;JSON path orders.id doesn&apos;t match.&#10;Expected: &lt;60908&gt;&#10;  Actual: &lt;[60908, 60909]&gt;&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 
+1 expectation failed.
+JSON path orders.id doesn't match.
+Expected: <60908>
+  Actual: <[60908, 60909]>
+
+	at receivingOrders.ReceivingOrdersTest.ordersListWithCourierId(ReceivingOrdersTest.java:69)
+]]></failure>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+  </testcase>
+  <testcase name="ordersListWithoutQuery" classname="receivingOrders.ReceivingOrdersTest" time="1.985"/>
 </testsuite>

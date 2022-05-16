@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="createCourier.CreateCourierWithNotValidDataTest" time="8.863" tests="5" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="createCourier.CreateCourierWithNotValidDataTest" time="0.959" tests="5" errors="0" skipped="0" failures="1">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/surefire/surefirebooter8077537636351773313.jar /Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/surefire 2022-05-13T17-59-18_804-jvmRun1 surefire16604841718138147719tmp surefire_011732648675295418351tmp"/>
+    <property name="sun.java.command" value="/Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/surefire/surefirebooter7097800641646546772.jar /Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/surefire 2022-05-16T18-20-41_939-jvmRun1 surefire15960333899639992173tmp surefire_010616676272222863798tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/test-classes:/Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/classes:/Users/vladimirsirotinkiy/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/vladimirsirotinkiy/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/vladimirsirotinkiy/.m2/repository/io/rest-assured/rest-assured/5.0.1/rest-assured-5.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/groovy/groovy/4.0.1/groovy-4.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/groovy/groovy-xml/4.0.1/groovy-xml-4.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/vladimirsirotinkiy/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/vladimirsirotinkiy/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/vladimirsirotinkiy/.m2/repository/org/hamcrest/hamcrest/2.1/hamcrest-2.1.jar:/Users/vladimirsirotinkiy/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/vladimirsirotinkiy/.m2/repository/io/rest-assured/json-path/5.0.1/json-path-5.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/groovy/groovy-json/4.0.1/groovy-json-4.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/io/rest-assured/rest-assured-common/5.0.1/rest-assured-common-5.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/io/rest-assured/xml-path/5.0.1/xml-path-5.0.1.jar:/Users/vladimirsirotinkiy/.m2/repository/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar:/Users/vladimirsirotinkiy/.m2/repository/io/qameta/allure/allure-junit4/2.17.3/allure-junit4-2.17.3.jar:/Users/vladimirsirotinkiy/.m2/repository/io/qameta/allure/allure-java-commons/2.17.3/allure-java-commons-2.17.3.jar:/Users/vladimirsirotinkiy/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/Users/vladimirsirotinkiy/.m2/repository/io/qameta/allure/allure-model/2.17.3/allure-model-2.17.3.jar:/Users/vladimirsirotinkiy/.m2/repository/io/qameta/allure/allure-rest-assured/2.17.3/allure-rest-assured-2.17.3.jar:/Users/vladimirsirotinkiy/.m2/repository/io/qameta/allure/allure-attachments/2.17.3/allure-attachments-2.17.3.jar:/Users/vladimirsirotinkiy/.m2/repository/org/freemarker/freemarker/2.3.31/freemarker-2.3.31.jar:/Users/vladimirsirotinkiy/.m2/repository/com/google/code/gson/gson/2.9.0/gson-2.9.0.jar:/Users/vladimirsirotinkiy/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.0/jackson-databind-2.13.0.jar:/Users/vladimirsirotinkiy/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.0/jackson-annotations-2.13.0.jar:/Users/vladimirsirotinkiy/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.0/jackson-core-2.13.0.jar:/Users/vladimirsirotinkiy/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar:"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/surefire/surefirebooter8077537636351773313.jar"/>
+    <property name="surefire.real.class.path" value="/Users/vladimirsirotinkiy/IdeaProjects/sprint_3/target/surefire/surefirebooter7097800641646546772.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="11.0.14.1+10-LTS"/>
@@ -63,16 +63,16 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует логин]" classname="createCourier.CreateCourierWithNotValidDataTest" time="7.271"/>
-  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует пароль]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.359"/>
-  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует имя]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.423">
+  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует логин]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.222"/>
+  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует пароль]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.153"/>
+  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует имя]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.196">
     <failure message="1 expectation failed.&#10;Expected status code &lt;400&gt; but was &lt;201&gt;.&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <400> but was <201>.
 
-	at createCourier.CreateCourierWithNotValidDataTest.notValidCreateNewCourier(CreateCourierWithNotValidDataTest.java:64)
+	at createCourier.CreateCourierWithNotValidDataTest.notValidCreateNewCourier(CreateCourierWithNotValidDataTest.java:60)
 ]]></failure>
   </testcase>
-  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует лог/пасс]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.278"/>
-  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует лог/пасс и имя]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.268"/>
+  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует лог/пасс]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.183"/>
+  <testcase name="notValidCreateNewCourier[test data: 400 Отсутствует лог/пасс и имя]" classname="createCourier.CreateCourierWithNotValidDataTest" time="0.192"/>
 </testsuite>

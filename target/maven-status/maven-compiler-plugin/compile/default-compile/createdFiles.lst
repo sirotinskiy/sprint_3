@@ -1,4 +1,6 @@
 model/Courier$CourierBuilder.class
-utils/CourierUtils.class
+utils/Utils.class
 model/Courier.class
+model/Order.class
+model/Order$OrderBuilder.class
 client/Steps.class

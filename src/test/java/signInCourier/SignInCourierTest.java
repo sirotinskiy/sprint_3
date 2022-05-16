@@ -1,6 +1,5 @@
 package signInCourier;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -11,8 +10,9 @@ import org.junit.Test;
 
 import static client.Steps.*;
 
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.*;
-import static utils.CourierUtils.getRandomString;
+import static utils.Utils.getRandomString;
 
 public class SignInCourierTest {
     private Courier courier;
@@ -38,14 +38,14 @@ public class SignInCourierTest {
     }
 
     @Test
-    @DisplayName("Успешный вход в систему 201")
+    @DisplayName("Успешный вход в систему 200")
     public void successSignIn(){
 
         Response successSignInResponse = signInCourier(courier);
         successSignInResponse.then()
                 .assertThat()
-                .body("id",greaterThanOrEqualTo(0))
+                .body("id",notNullValue())
                 .and()
-                .statusCode(200);
+                .statusCode(SC_OK);
     }
 }

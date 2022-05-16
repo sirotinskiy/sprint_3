@@ -9,8 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static client.Steps.*;
+import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
-import static utils.CourierUtils.getRandomString;
+import static utils.Utils.getRandomString;
 
 public class CreateCourierTest {
 
@@ -40,7 +41,7 @@ public class CreateCourierTest {
         Response createCourierResponse = createCourier(courier);
         createCourierResponse.then()
                 .assertThat()
-                .statusCode(201)
+                .statusCode(SC_CREATED)
                 .and()
                 .body("ok",equalTo(true));
     }
@@ -62,7 +63,7 @@ public class CreateCourierTest {
         Response createCourierResponse = createCourier(notUnique);
         createCourierResponse.then()
                 .assertThat()
-                .statusCode(409)
+                .statusCode(SC_CONFLICT)
                 .and()
                 .body("message",equalTo("Этот логин уже используется"));
     }
