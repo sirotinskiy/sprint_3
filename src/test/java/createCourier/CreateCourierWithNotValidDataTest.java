@@ -2,16 +2,17 @@ package createCourier;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import model.Courier;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static client.Steps.*;
+import static client.CourierApi.*;
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
-import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.Utils.getRandomString;
 
@@ -23,8 +24,7 @@ public class CreateCourierWithNotValidDataTest {
     private final Courier courier;
     private final String descriptionData;
 
-    private int id;
-
+    private RequestSpecification spec;
 
     public CreateCourierWithNotValidDataTest(int expectStatusCode, String expectErrorMessage, Courier courier, String descriptionData) {
         this.expectStatusCode = expectStatusCode;
@@ -47,14 +47,17 @@ public class CreateCourierWithNotValidDataTest {
 
     @Before
     public void setUp(){
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/";
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://qa-scooter.praktikum-services.ru/")
+                .setContentType("application/json")
+                .build();
     }
 
 
     @Test
     @DisplayName("Создание курьера с неполным набором данных")
     public void notValidCreateNewCourier(){
-        Response createCourierResponse = createCourier(courier);
+        Response createCourierResponse = createCourier(courier, spec);
         createCourierResponse.then()
                 .assertThat()
                 .statusCode(expectStatusCode)

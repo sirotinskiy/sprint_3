@@ -2,28 +2,36 @@ package receivingOrders;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import model.Courier;
 import model.Order;
 import org.junit.Before;
 import org.junit.Test;
 
-import static client.Steps.*;
+import static client.CourierApi.*;
+import static client.OrderApi.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.*;
 import static utils.Utils.*;
 
 public class ReceivingOrdersTest {
 
+    private RequestSpecification spec;
+
     @Before
     public void setUp(){
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/";
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://qa-scooter.praktikum-services.ru/")
+                .setContentType("application/json")
+                .build();
     }
 
     @Test
     @DisplayName("Получение списка заказов без параметров")
     public void ordersListWithoutQuery(){
-        Response successReceivingListOrders = receivingListOrdersWithoutQuery();
+        Response successReceivingListOrders = receivingListOrdersWithoutQuery(spec);
 
         successReceivingListOrders.then()
                 .assertThat()
@@ -41,7 +49,7 @@ public class ReceivingOrdersTest {
                 .login(getRandomString(7))
                 .password(getRandomString(7))
                 .firstName(getRandomString(7)).build();
-        createCourier(courier);
+        createCourier(courier, spec);
 
         Order order = Order.builder()
                 .color(new String[]{"BLACK"})
@@ -54,15 +62,15 @@ public class ReceivingOrdersTest {
                 .deliveryDate(getRandomDate())
                 .comment(getRandomString(24)).build();
 
-        int track = createOrder(order).then().extract().path("track");
+        int track = createOrder(order, spec).then().extract().path("track");
 
-        int orderId = getOrderByTrack(track).then().extract().path("order.id");
+        int orderId = getOrderByTrack(track, spec).then().extract().path("order.id");
 
-        int courierId = signInCourier(courier).then().extract().path("id");
+        int courierId = signInCourier(courier, spec).then().extract().path("id");
 
-        acceptOrder(courierId,orderId);
+        acceptOrder(courierId,orderId, spec);
 
-        receivingListOrdersWithCourierId(courierId).then()
+        receivingListOrdersWithCourierId(courierId, spec).then()
                 .assertThat()
                 .statusCode(SC_OK)
                 .and()
@@ -70,9 +78,9 @@ public class ReceivingOrdersTest {
                 .and()
                 .body("orders.courierId", equalTo(courierId));
 
-        cancelOrder(track);
+        cancelOrder(track, spec);
 
-        deleteCourier(courierId);
+        deleteCourier(courierId, spec);
     }
 
 }

@@ -2,13 +2,15 @@ package createCourier;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import model.Courier;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static client.Steps.*;
+import static client.CourierApi.*;
 import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.Utils.getRandomString;
@@ -18,16 +20,21 @@ public class CreateCourierTest {
     private Courier courier;
     private int id;
 
+    private RequestSpecification spec;
+
 
     @Before
     public void setUp(){
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/";
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://qa-scooter.praktikum-services.ru/")
+                .setContentType("application/json")
+                .build();
     }
 
     @After
     public void tearDown(){
-        id = signInCourier(courier).then().extract().path("id");
-        deleteCourier(id);
+        id = signInCourier(courier, spec).then().extract().path("id");
+        deleteCourier(id, spec);
     }
 
     @Test
@@ -38,7 +45,7 @@ public class CreateCourierTest {
                 .password(getRandomString(7))
                 .firstName(getRandomString(7))
                 .build();
-        Response createCourierResponse = createCourier(courier);
+        Response createCourierResponse = createCourier(courier, spec);
         createCourierResponse.then()
                 .assertThat()
                 .statusCode(SC_CREATED)
@@ -54,13 +61,13 @@ public class CreateCourierTest {
                 .password(getRandomString(7))
                 .firstName(getRandomString(7))
                 .build();
-        createCourier(courier);
+        createCourier(courier, spec);
         Courier notUnique = Courier.builder()
                 .login(courier.getLogin())
                 .password(courier.getPassword())
                 .firstName(courier.getFirstName())
                 .build();
-        Response createCourierResponse = createCourier(notUnique);
+        Response createCourierResponse = createCourier(notUnique, spec);
         createCourierResponse.then()
                 .assertThat()
                 .statusCode(SC_CONFLICT)

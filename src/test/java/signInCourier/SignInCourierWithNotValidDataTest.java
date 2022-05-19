@@ -3,7 +3,9 @@ package signInCourier;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import model.Courier;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static client.Steps.*;
+import static client.CourierApi.*;
+import static io.restassured.RestAssured.*;
 import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.Utils.getRandomString;
@@ -33,6 +36,9 @@ public class SignInCourierWithNotValidDataTest {
 
     private int id;
 
+    private RequestSpecification spec;
+
+
     public SignInCourierWithNotValidDataTest(int expectStatusCode, String expectErrorMessage, Courier courierSignIn, String descriptionData) {
         this.expectStatusCode = expectStatusCode;
         this.expectErrorMessage = expectErrorMessage;
@@ -52,20 +58,24 @@ public class SignInCourierWithNotValidDataTest {
 
     @Before
     public void setUp(){
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/";
-        createCourier(courier);
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://qa-scooter.praktikum-services.ru/")
+                .setContentType("application/json")
+                .build();
+
+        createCourier(courier, spec);
     }
 
     @After
     public void tearDown(){
-        id = signInCourier(courier).then().extract().path("id");
-        deleteCourier(id);
+        id = signInCourier(courier, spec).then().extract().path("id");
+        deleteCourier(id, spec);
     }
 
     @Test
     @DisplayName("Вход в систему с неполными или с не существующими данными 400, 404")
     public void unSuccessSignIn(){
-        Response successSignInResponse = signInCourier(courierSignIn);
+        Response successSignInResponse = signInCourier(courierSignIn, spec);
         successSignInResponse.then()
                 .assertThat()
                 .statusCode(expectStatusCode)

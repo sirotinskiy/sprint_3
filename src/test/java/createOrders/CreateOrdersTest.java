@@ -2,7 +2,9 @@ package createOrders;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import model.Order;
 import org.junit.After;
 import org.junit.Before;
@@ -10,12 +12,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.List;
-
-import static client.Steps.*;
-import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
+import static client.CourierApi.*;
+import static client.OrderApi.cancelOrder;
+import static client.OrderApi.createOrder;
 import static org.apache.http.HttpStatus.SC_CREATED;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static utils.Utils.*;
 
@@ -28,6 +28,8 @@ public class CreateOrdersTest {
     private final Order order;
 
     private int trackOrder;
+
+    private RequestSpecification spec;
 
     public CreateOrdersTest(int expectStatusCode, String descriptionData, Order order) {
         this.expectStatusCode = expectStatusCode;
@@ -48,20 +50,23 @@ public class CreateOrdersTest {
 
     @Before
     public void setUp(){
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/";
+        spec = new RequestSpecBuilder()
+                .setBaseUri("https://qa-scooter.praktikum-services.ru/")
+                .setContentType("application/json")
+                .build();
     }
 
     @After
     public  void tearDown(){
-        trackOrder = createOrder(order).then().extract().path("track");
-        cancelOrder(trackOrder);
+        trackOrder = createOrder(order, spec).then().extract().path("track");
+        cancelOrder(trackOrder, spec);
 
     }
 
     @Test
     @DisplayName("Создание заказ с разными вариациями цвета")
     public void successCreateOrder(){
-        Response createOrderResponse = createOrder(order);
+        Response createOrderResponse = createOrder(order, spec);
         createOrderResponse.then()
                 .assertThat()
                 .statusCode(expectStatusCode)
