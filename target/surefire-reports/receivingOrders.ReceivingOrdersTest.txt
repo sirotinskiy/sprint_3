@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: receivingOrders.ReceivingOrdersTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 12.853 s <<< FAILURE! - in receivingOrders.ReceivingOrdersTest
+ordersListWithCourierId(receivingOrders.ReceivingOrdersTest)  Time elapsed: 10.305 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+JSON path orders.id doesn't match.
+Expected: <61731>
+  Actual: <[61731, 61732]>
+
+	at receivingOrders.ReceivingOrdersTest.ordersListWithCourierId(ReceivingOrdersTest.java:77)
+

@@ -1,0 +1,6 @@
+signInCourier/SignInCourierWithNotValidDataTest.class
+receivingOrders/ReceivingOrdersTest.class
+createCourier/CreateCourierTest.class
+createOrders/CreateOrdersTest.class
+signInCourier/SignInCourierTest.class
+createCourier/CreateCourierWithNotValidDataTest.class
